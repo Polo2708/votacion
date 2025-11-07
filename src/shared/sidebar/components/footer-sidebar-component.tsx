@@ -1,12 +1,12 @@
 import { LogOut } from "lucide-react"
-import { useAuthController } from "../../../modules/auth/controller/auth-controller"
+import { useSidebarController } from "../controller/sidebar-controller"
 
 function FooterSidebarComponent() {
-    const { logout } = useAuthController()
+    const { logoutAuth } = useSidebarController()
     return (
         <div className="h-full w-full flex flex-col">
 
-            <div className="flex justify-end items-center" onClick={logout}>
+            <div className="flex justify-end items-center" onClick={logoutAuth}>
                 <LogOut />
             </div>
             <p>© 2025 Mi App</p>

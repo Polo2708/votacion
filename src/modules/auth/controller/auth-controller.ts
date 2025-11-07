@@ -31,10 +31,7 @@ export const useAuthController = () => {
 
   useEffect(() => {
     if (user) {
-      console.log("Inicio de sesion exitoso", user);
       navigate("/");
-    } else {
-      navigate("/auth");
     }
   }, [user]);
 

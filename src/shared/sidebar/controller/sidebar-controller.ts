@@ -20,9 +20,14 @@ export const useSidebarController = () => {
     navigate(item.path);
   };
 
+  const logoutAuth = () => {
+    logout();
+    navigate("/auth");
+  };
+
   return {
     menuItems,
     handleSelected,
-    logout
+    logoutAuth,
   };
 };
