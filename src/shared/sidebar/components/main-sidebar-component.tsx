@@ -1,4 +1,5 @@
 import { useSidebarController } from "../controller/sidebar-controller";
+import FooterSidebarComponent from "./footer-sidebar-component";
 
 function MainSidebarComponent() {
     const { menuItems, handleSelected } = useSidebarController()
@@ -25,7 +26,7 @@ function MainSidebarComponent() {
 
             {/* Footer / sección inferior */}
             <div className="border-t border-gray-700 pt-3 text-sm text-gray-400">
-                <p>© 2025 Mi App</p>
+                <FooterSidebarComponent />
             </div>
         </aside>
     );

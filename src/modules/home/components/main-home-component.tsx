@@ -1,7 +1,7 @@
 function MainHomeComponent() {
     return (
-        <div className="h-screen">
-            <h1>he</h1>
+        <div className="h-full flex justify-center items-center">
+            Bienvenido
         </div>
     )
 }

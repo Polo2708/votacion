@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthStore } from "../../../store/auth/auth-store";
+import { useNavigate } from "react-router-dom";
 
 export const useAuthController = () => {
-  const { login, register, loading, user } = useAuthStore();
+  const { login, register, loading, user, logout } = useAuthStore();
   const [modo, setModo] = useState<"login" | "register">("login");
+  const navigate = useNavigate();
 
   const { control, handleSubmit } = useForm({
     defaultValues: { email: "", password: "" },
@@ -19,7 +21,6 @@ export const useAuthController = () => {
     try {
       if (modo === "login") {
         await login(data);
-        console.log(user);
       } else {
         await register(data);
       }
@@ -27,6 +28,15 @@ export const useAuthController = () => {
       alert(`Error: ${err.message}`);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      console.log("Inicio de sesion exitoso", user);
+      navigate("/");
+    } else {
+      navigate("/auth");
+    }
+  }, [user]);
 
   const toggleModo = () =>
     setModo((prev) => (prev === "login" ? "register" : "login"));
@@ -39,5 +49,6 @@ export const useAuthController = () => {
     modo,
     toggleModo,
     loading,
+    logout,
   };
 };

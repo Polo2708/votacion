@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { StoreTabs } from "../../../store/tabs/tabs-store";
+import { useAuthStore } from "../../../store/auth/auth-store";
 
 export const useSidebarController = () => {
   const navigate = useNavigate();
   const { addTab, tabs } = StoreTabs();
+  const { logout } = useAuthStore();
 
   const menuItems = [
     { path: "/dashboard", label: "Dashboard" },
     { path: "/votacion", label: "Votación" },
+    { path: "/new-debate", label: "Crear Nuevo" },
     { path: "/settings", label: "Configuración" },
   ];
 
@@ -16,8 +19,10 @@ export const useSidebarController = () => {
     addTab(item);
     navigate(item.path);
   };
+
   return {
     menuItems,
     handleSelected,
+    logout
   };
 };
