@@ -1,18 +1,34 @@
-import { Link } from "react-router-dom"
+import { useSidebarController } from "../controller/sidebar-controller";
 
 function MainSidebarComponent() {
+    const { menuItems, handleSelected } = useSidebarController()
     return (
-        <div className="">
-            <aside className="w-64 bg-gray-900 text-white h-screen p-4 fixed left-0 top-0">
-                <h2 className="text-xl font-bold mb-6">Mi App</h2>
+        <aside className="flex flex-col justify-between bg-gray-900 text-gray-200 w-64 h-screen p-4">
+            <div className="flex flex-col items-center gap-2 mb-6">
+                <h2 className="text-xl font-semibold tracking-wide">Mi App</h2>
+            </div>
+
+            {/* Navegación */}
+            <nav className="flex flex-col gap-2 flex-1 w-full">
                 <nav className="flex flex-col gap-3">
-                    <Link to="/dashboard" className="hover:bg-gray-700 p-2 rounded">Dashboard</Link>
-                    <Link to="/profile" className="hover:bg-gray-700 p-2 rounded">Perfil</Link>
-                    <Link to="/settings" className="hover:bg-gray-700 p-2 rounded">Configuración</Link>
+                    {menuItems.map((item) => (
+                        <button
+                            key={item.path}
+                            onClick={() => handleSelected(item)}
+                            className="text-left hover:bg-gray-700 rounded px-3 py-2 transition"
+                        >
+                            {item.label}
+                        </button>
+                    ))}
                 </nav>
-            </aside>
-        </div>
-    )
+            </nav>
+
+            {/* Footer / sección inferior */}
+            <div className="border-t border-gray-700 pt-3 text-sm text-gray-400">
+                <p>© 2025 Mi App</p>
+            </div>
+        </aside>
+    );
 }
 
-export default MainSidebarComponent
+export default MainSidebarComponent;

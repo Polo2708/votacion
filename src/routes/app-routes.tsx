@@ -5,6 +5,8 @@ import AuthView from '../modules/auth/view/auth-view'
 import AuthRouterGuard from '../guards/auth-router'
 import { MainLayout } from '../layouts/main-layout'
 import { AuthLayout } from '../layouts/auth-layout'
+import MainDashboardComponent from '../modules/dashboard/components/main-dashboard'
+import SettingsComponent from '../modules/settings/components/settings-component'
 
 function AppRouter() {
     return (
@@ -14,6 +16,8 @@ function AppRouter() {
                     <Route element={<MainLayout />}>
                         <Route path='/' element={<HomeView />} />
                         <Route path='/votacion' element={<div>Hola mundo</div>} />
+                        <Route path='/dashboard' element={<MainDashboardComponent />} />
+                        <Route path='/settings' element={<SettingsComponent />} />
                     </Route>
                 </Route>
 
